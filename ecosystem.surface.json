@@ -1,0 +1,27 @@
+{
+  "schema": "nexus.capability.v1",
+  "component": "auro-mesie-runtime",
+  "repository": "ItsNotAILABS/AURO",
+  "role": "spectral-intelligence-model-runtime-plane",
+  "actions": [
+    "model.capabilities",
+    "model.infer.spectral",
+    "model.embed",
+    "model.benchmark",
+    "model.health",
+    "model.release_evidence"
+  ],
+  "risk_tiers": {
+    "model.capabilities": "read",
+    "model.infer.spectral": "compute",
+    "model.embed": "compute",
+    "model.benchmark": "compute-bounded",
+    "model.health": "read",
+    "model.release_evidence": "read"
+  },
+  "produces": ["nexus.telemetry.v1","nexus.health.v1","nexus.release-evidence.v1","nexus.artifact.v1"],
+  "consumes": ["nexus.task.v1","nexus.budget.v1","nexus.context-pack.v1","nexus.policy-decision.v1"],
+  "limits": {"model_self_authority":false,"external_side_effects":false,"benchmark_claim_requires_artifact":true,"private_reasoning_export":false},
+  "proof": {"state":"source","benchmark_and_deploy_evidence_are_separate" : true},
+  "authority": "ItsNotAILABS/nexus"
+}
