@@ -3,10 +3,14 @@
   "component": "auro-mesie-runtime",
   "repository": "ItsNotAILABS/AURO",
   "role": "spectral-intelligence-model-runtime-plane",
+  "research_corpus": "medina.corpus-architectura.v2@2.1.0",
   "actions": [
     "model.capabilities",
     "model.infer.spectral",
     "model.embed",
+    "model.atomic.compute",
+    "model.council.compute",
+    "model.sovereignty.profile",
     "model.benchmark",
     "model.health",
     "model.release_evidence"
@@ -15,13 +19,52 @@
     "model.capabilities": "read",
     "model.infer.spectral": "compute",
     "model.embed": "compute",
+    "model.atomic.compute": "compute-bounded",
+    "model.council.compute": "compute-bounded",
+    "model.sovereignty.profile": "read-evidence",
     "model.benchmark": "compute-bounded",
     "model.health": "read",
     "model.release_evidence": "read"
   },
-  "produces": ["nexus.telemetry.v1","nexus.health.v1","nexus.release-evidence.v1","nexus.artifact.v1"],
-  "consumes": ["nexus.task.v1","nexus.budget.v1","nexus.context-pack.v1","nexus.policy-decision.v1"],
-  "limits": {"model_self_authority":false,"external_side_effects":false,"benchmark_claim_requires_artifact":true,"private_reasoning_export":false},
-  "proof": {"state":"source","benchmark_and_deploy_evidence_are_separate" : true},
+  "produces": [
+    "nexus.telemetry.v1",
+    "nexus.health.v1",
+    "nexus.release-evidence.v1",
+    "nexus.artifact.v1",
+    "nexus.model-council.v1",
+    "nexus.sovereignty-profile.v1"
+  ],
+  "consumes": [
+    "nexus.task.v1",
+    "nexus.budget.v1",
+    "nexus.context-pack.v1",
+    "nexus.policy-decision.v1",
+    "auro.model-family.v2"
+  ],
+  "family_lanes": [
+    "Auro-156K",
+    "Auro-250M",
+    "Auro-500M",
+    "Auro-2B",
+    "Auro-4B",
+    "Auro-8B",
+    "Auro-14B",
+    "Auro-100B"
+  ],
+  "limits": {
+    "model_self_authority": false,
+    "external_side_effects": false,
+    "benchmark_claim_requires_artifact": true,
+    "private_reasoning_export": false,
+    "architecture_is_checkpoint_evidence": false,
+    "accepted_context_is_dense_attention": false,
+    "named_specialist_is_trained_checkpoint": false
+  },
+  "proof": {
+    "state": "source",
+    "benchmark_and_deploy_evidence_are_separate": true,
+    "exact_checkpoint_evidence_required": true,
+    "corpus_binding": "corpus.architecture.json"
+  },
   "authority": "ItsNotAILABS/nexus"
 }
