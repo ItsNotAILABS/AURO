@@ -1,0 +1,72 @@
+{
+  "schema": "auro.corpus-architecture.v1",
+  "corpus": "medina.corpus-architectura.v2@2.1.0",
+  "component": "auro-mesie-runtime",
+  "authority": "ItsNotAILABS/nexus",
+  "papers": [
+    "computatio-sui-iuris",
+    "foedus-machinarum",
+    "consensus-ex-minimis",
+    "probatio-ante-assertionem",
+    "emergentia-gubernata"
+  ],
+  "family_lanes": [
+    "Auro-156K",
+    "Auro-250M",
+    "Auro-500M",
+    "Auro-2B",
+    "Auro-4B",
+    "Auro-8B",
+    "Auro-14B",
+    "Auro-100B"
+  ],
+  "specialist_triad": [
+    "Auro-500M-SENSUS",
+    "Auro-500M-PRAXIS",
+    "Auro-500M-VERBUM"
+  ],
+  "runtime_sequence": [
+    "receive-bounded-task",
+    "validate-budget-and-policy",
+    "resolve-exact-model-or-checkpoint",
+    "run-mesie-compute",
+    "emit-telemetry-and-artifacts",
+    "validate-output-contract",
+    "return-receipt"
+  ],
+  "council": {
+    "schema": "nexus.model-council.v1",
+    "parent": "Auro-2B",
+    "task_transport": "bounded-task-capsules-with-evidence-refs",
+    "preserve_disagreement": true,
+    "full_context_broadcast": false,
+    "mesie_each_stage": true,
+    "claim_boundary": "specialist identities are routing contracts until exact checkpoint or adapter evidence exists"
+  },
+  "sovereignty_dimensions": [
+    "local-execution",
+    "exportability",
+    "provider-replaceability",
+    "execution-transparency",
+    "recovery",
+    "dependency-burden"
+  ],
+  "evidence_classes": [
+    "E0-assertion",
+    "E1-source",
+    "E2-execution-log",
+    "E3-validated-output",
+    "E4-signed-receipt",
+    "E5-external-custody-and-reproduction"
+  ],
+  "claim_boundaries": [
+    "architecture-configuration-is-not-a-trained-checkpoint",
+    "accepted-context-is-not-dense-attention",
+    "named-agent-is-not-a-separately-trained-model",
+    "source-code-is-not-deployment-evidence",
+    "local-hash-chain-is-not-external-custody",
+    "same-session-recall-is-not-persistent-memory",
+    "successful-build-is-not-clean-install-proof",
+    "generated-answer-is-not-experimental-validation"
+  ]
+}
