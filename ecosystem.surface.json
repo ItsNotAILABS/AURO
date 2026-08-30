@@ -5,6 +5,9 @@
   "role": "spectral-intelligence-model-runtime-plane",
   "actions": [
     "model.capabilities",
+    "model.sdk.describe",
+    "model.cli.describe",
+    "model.channel.describe",
     "model.infer.spectral",
     "model.embed",
     "model.benchmark",
@@ -13,15 +16,36 @@
   ],
   "risk_tiers": {
     "model.capabilities": "read",
+    "model.sdk.describe": "read",
+    "model.cli.describe": "read",
+    "model.channel.describe": "read",
     "model.infer.spectral": "compute",
     "model.embed": "compute",
     "model.benchmark": "compute-bounded",
     "model.health": "read",
     "model.release_evidence": "read"
   },
+  "interfaces": {
+    "python_sdk": "mesie.auro_sdk:AuroSDK",
+    "cli": "auro",
+    "legacy_scientific_cli": "mesie",
+    "logical_channel_contract": "auro.pocket-channel-contract.v1",
+    "physical_frequency_model": "mesie.edge.hz_ladder"
+  },
+  "logical_channels": ["intel@5","model@6","proof@8","recovery@11"],
   "produces": ["nexus.telemetry.v1","nexus.health.v1","nexus.release-evidence.v1","nexus.artifact.v1"],
   "consumes": ["nexus.task.v1","nexus.budget.v1","nexus.context-pack.v1","nexus.policy-decision.v1"],
-  "limits": {"model_self_authority":false,"external_side_effects":false,"benchmark_claim_requires_artifact":true,"private_reasoning_export":false},
-  "proof": {"state":"source","benchmark_and_deploy_evidence_are_separate" : true},
+  "limits": {
+    "model_self_authority": false,
+    "external_side_effects": false,
+    "benchmark_claim_requires_artifact": true,
+    "private_reasoning_export": false,
+    "logical_hz_is_physical_radio_claim": false
+  },
+  "proof": {
+    "state": "source",
+    "benchmark_and_deploy_evidence_are_separate": true,
+    "bounded_invocations_emit_evidence_digest": true
+  },
   "authority": "ItsNotAILABS/nexus"
 }
