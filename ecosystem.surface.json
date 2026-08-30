@@ -6,6 +6,9 @@
   "research_corpus": "medina.corpus-architectura.v2@2.1.0",
   "actions": [
     "model.capabilities",
+    "model.sdk.describe",
+    "model.cli.describe",
+    "model.channel.describe",
     "model.infer.spectral",
     "model.embed",
     "model.atomic.compute",
@@ -17,6 +20,9 @@
   ],
   "risk_tiers": {
     "model.capabilities": "read",
+    "model.sdk.describe": "read",
+    "model.cli.describe": "read",
+    "model.channel.describe": "read",
     "model.infer.spectral": "compute",
     "model.embed": "compute",
     "model.atomic.compute": "compute-bounded",
@@ -26,6 +32,19 @@
     "model.health": "read",
     "model.release_evidence": "read"
   },
+  "interfaces": {
+    "python_sdk": "mesie.auro_sdk:AuroSDK",
+    "cli": "auro",
+    "legacy_scientific_cli": "mesie",
+    "logical_channel_contract": "auro.pocket-channel-contract.v1",
+    "physical_frequency_model": "mesie.edge.hz_ladder"
+  },
+  "logical_channels": [
+    "intel@5",
+    "model@6",
+    "proof@8",
+    "recovery@11"
+  ],
   "produces": [
     "nexus.telemetry.v1",
     "nexus.health.v1",
@@ -58,13 +77,15 @@
     "private_reasoning_export": false,
     "architecture_is_checkpoint_evidence": false,
     "accepted_context_is_dense_attention": false,
-    "named_specialist_is_trained_checkpoint": false
+    "named_specialist_is_trained_checkpoint": false,
+    "logical_hz_is_physical_radio_claim": false
   },
   "proof": {
     "state": "source",
     "benchmark_and_deploy_evidence_are_separate": true,
     "exact_checkpoint_evidence_required": true,
-    "corpus_binding": "corpus.architecture.json"
+    "corpus_binding": "corpus.architecture.json",
+    "bounded_invocations_emit_evidence_digest": true
   },
   "authority": "ItsNotAILABS/nexus"
 }
