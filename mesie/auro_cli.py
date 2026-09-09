@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import sys
 
 from mesie.auro_sdk import AuroSDK
 
@@ -21,16 +20,17 @@ def _payload(raw: str) -> dict:
 
 
 def main(argv: list[str] | None = None) -> None:
-    parser = argparse.ArgumentParser(prog="auro", description="AURO / MESIE product facade")
+    parser = argparse.ArgumentParser(prog="auro", description="AURO / MESIE governed compute facade")
     sub = parser.add_subparsers(dest="command")
 
     sub.add_parser("health", help="Describe AURO/MESIE runtime health")
-    sub.add_parser("capabilities", help="List stable integration capabilities")
-    sub.add_parser("channels", help="Describe POCKET logical HZ channel contract")
+    sub.add_parser("capabilities", help="List stable integration capabilities and authority boundary")
+    sub.add_parser("channels", help="Describe POCKET doctrine v2 logical HZ channel contract")
 
     inv = sub.add_parser("invoke", help="Invoke one stable AURO SDK action")
     inv.add_argument("action")
     inv.add_argument("--json", default="{}", help="JSON object payload")
+    inv.add_argument("--request-id", default="", help="Preserve POCKET/NEXUS request identity")
     inv.add_argument("--pretty", action="store_true")
 
     args = parser.parse_args(argv)
@@ -46,7 +46,7 @@ def main(argv: list[str] | None = None) -> None:
     elif args.command == "channels":
         out = sdk.channels()
     else:
-        out = sdk.invoke(args.action, _payload(args.json))
+        out = sdk.invoke(args.action, _payload(args.json), request_id=args.request_id)
 
     print(json.dumps(out, indent=2 if getattr(args, "pretty", False) else None, sort_keys=True, default=str))
     raise SystemExit(0 if out.get("ok", True) else 2)
