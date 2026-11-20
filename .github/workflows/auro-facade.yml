@@ -1,0 +1,36 @@
+name: AURO Facade Gate
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  facade:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install core and tests
+        run: |
+          python -m pip install --disable-pip-version-check -e . pytest
+      - name: Facade tests
+        run: pytest -q tests/test_auro_facade.py
+      - name: CLI smoke
+        run: |
+          auro health
+          auro capabilities
+          auro channels
+          auro invoke foundation.describe --json '{}'
+      - name: Source integrity
+        run: |
+          python -m py_compile mesie/auro_sdk.py mesie/auro_cli.py mesie/integration/pocket_channels.py
+          python - <<'PY'
+          import mesie
+          assert mesie.__version__ == '0.4.1', mesie.__version__
+          PY
